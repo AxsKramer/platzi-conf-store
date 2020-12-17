@@ -1,2 +1,2 @@
-# platzi-conf-store
-platzi-conf-store
+# Platzi Conf Store
+Platzi Conf Store using hooks.
