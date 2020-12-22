@@ -12,21 +12,30 @@ import useStore from '../hooks/useStore';
 
 const App = () => {
   const store = useStore();
+  const isEmpty = Object.keys(store.state).length;
   return ( 
-    <AppContext.Provider value={store}>
-      <BrowserRouter>
-        <Layout>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/checkout' component={Checkout} />
-            <Route exact path='/checkout/information' component={Information} />
-            <Route exact path='/checkout/payment' component={Payment} />
-            <Route exact path='/checkout/success' component={Success} />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
-      </BrowserRouter>
-    </AppContext.Provider>
+    <>
+      {
+        isEmpty > 0 
+        ? (
+          <AppContext.Provider value={store}>
+            <BrowserRouter>
+              <Layout>
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route exact path='/checkout' component={Checkout} />
+                  <Route exact path='/checkout/information' component={Information} />
+                  <Route exact path='/checkout/payment' component={Payment} />
+                  <Route exact path='/checkout/success' component={Success} />
+                  <Route component={NotFound} />
+                </Switch>
+              </Layout>
+            </BrowserRouter>
+          </AppContext.Provider>
+        ) 
+        : <h1>Cargando ...</h1>
+      }
+    </>
   );
 }
  
